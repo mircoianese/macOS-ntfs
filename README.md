@@ -10,7 +10,7 @@ This Script also perform a chkdsk in case the NTFS partition is "damaged", when 
 
 Download and Extract. Connect the disk and then from Terminal:
 
-`sudo ./ntfs_mount.sh <label name>`
+`sudo ./ntfs_mount.sh labelname`
 
 **Note:** Label can have spaces in it. You can write it with quotes or without, it will automatically be recognized. 
 
