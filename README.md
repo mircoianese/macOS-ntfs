@@ -24,8 +24,5 @@ Once the partition is mounted in R/W mode you can't see it from Finder. If you n
 
 2017-09-09
 * Initial Release
-
-
-Thank you,
-
-ZombieTheBest.
+* Tested on MacOS Sierra 10.12.6
+* No pre-requisites. 
