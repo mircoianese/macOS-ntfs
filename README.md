@@ -8,17 +8,38 @@ This Script also perform a chkdsk in case the NTFS partition is "damaged", when 
 
 ## Usage
 
-Download and Extract. Connect the disk and then from Terminal:
+Download and Extract. Set -x permissions to the script with: 
 
-`sudo ./ntfs_mount.sh labelname`
+`sudo chmod +x ntfsmount.sh`
 
-**Note:** Label can have spaces in it. You can write it with quotes or without, it will automatically be recognized. 
+
+Connect the disk and then from Terminal:
+
+`sudo ./ntfsmount.sh labelname`
+
+**Note:** labelname is the name of the disk as you can see it from Finder. Label can have spaces in it. You can write it with quotes or without, it will automatically be recognized. 
 
 ## How it works
 
 Script needs sudo permissions to edit `/etc/fstab` file. Everytime the scipt ends, after the device has been mounted in R/W mode, the `/etc/fstab` file get's erased, so next time you will connect the device it will be mounted as Read-Only again, unless you exec the script again.
 
 Once the partition is mounted in R/W mode you can't see it from Finder. If you need to open again the partition (without connecting-disconnecting the device), simply go to Finder and then, on Menu Bar, `Go -> Go to folder` and write `/Volumes/label name`. A window will show up. 
+
+## How to install
+
+If you want you can install the script so you can call it using Terminal without have to Change Directory first. 
+
+cd to Script Directory, then: 
+
+`sudo cp ntfsmount.sh ntfsfix /usr/bin`
+
+`sudo cp libntfs.9.dylib /usr/local/lib/libntfs.9.dylib`
+
+
+Then usage is:
+
+`sudo ntfsmount.sh labelname`
+
 
 ## Changelog
 
