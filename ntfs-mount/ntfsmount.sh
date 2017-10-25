@@ -25,6 +25,7 @@ if [ "$labelName" == "--install" ];
 then
 	echo 'Installing the Script in /usr/bin'
 	sudo cp ntfsmount.sh /usr/bin/ntfsmount.sh
+	sudo cp ntfsfix /usr/bin/ntfsfix
 	echo 'Script installed. Please Re-Launch it.'
 	exit 0
 fi
