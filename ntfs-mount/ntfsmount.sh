@@ -1,7 +1,7 @@
 #!/bin/bash
 #check root permissions
 echo > /etc/fstab
-if ! test -w /etc/fstab 
+if ! test -w /etc/fstab
 then
 	echo 'ERROR: No Root Access.'
 	exit 1
@@ -9,18 +9,27 @@ fi
 if ! test -w /usr/local/lib/libntfs.9.dylib
 then
 	echo 'Installing Library...'
+	sudo mkdir /usr/local/lib
 	sudo cp libntfs.9.dylib /usr/local/lib/libntfs.9.dylib
 fi
-if test $# -eq 0 
+if test $# -eq 0
 then
 	echo 'Edits /etc/fstab to make the drive writable and then mounts it.'
 	echo
-	echo 'Usage: ntfs_mount.sh label'
+	echo 'Usage: ntfsmount.sh label'
+	echo 'Install the Script: ntfsmount.sh --install'
 	exit 1
 fi
 labelName="$@"
+if [ "$labelName" == "--install" ];
+then
+	echo 'Installing the Script in /usr/bin'
+	sudo cp ntfsmount.sh /usr/bin/ntfsmount.sh
+	echo 'Script installed. Please Re-Launch it.'
+	exit 0
+fi
 valid=`diskutil info "$labelName" | wc -l`
-if test $valid -eq 1 
+if test $valid -eq 1
 then
 	echo 'ERROR: Invalid Label.'
 	echo 'If your label has a space in it try writing it using single quotes!'
@@ -29,7 +38,7 @@ then
 	exit 1
 fi
 valid2=`diskutil list | grep "$labelName" | wc -l`
-if test $valid2 -gt 1 
+if test $valid2 -gt 1
 then
 	echo 'ERROR: More than one device has this label.'
 	echo 'Please disconnect all other devices with the same name.'
@@ -38,7 +47,7 @@ fi
 
 #inject patch
 valid3=`diskutil info "$labelName" | grep UUID | wc -l`
-if test $valid3 -eq 0 
+if test $valid3 -eq 0
 then
   valid5=`cat /etc/fstab | grep "$labelName" | wc -l`
     if test $valid5 -eq 0
@@ -46,16 +55,16 @@ then
 		echo 'WARNING: Device has no UUID. Using Label...'
 		echo 'Injecting LABEL...'
 	  	echo >> /etc/fstab
-		echo LABEL="$labelName" none ntfs rw,auto,nobrowse >> /etc/fstab 
+		echo LABEL="$labelName" none ntfs rw,auto,nobrowse >> /etc/fstab
     fi
   else
   	uuid=`diskutil info "$labelName" | grep UUID | cut -d: -f2| cut -d' ' -f15`
   	valid4=`cat /etc/fstab | grep $uuid | wc -l`
-  	if test $valid4 -eq 0 
+  	if test $valid4 -eq 0
   	then
   		echo 'Injecting UUID...'
   		echo >> /etc/fstab
-		echo UUID=$uuid none ntfs rw,auto,nobrowse >> /etc/fstab 
+		echo UUID=$uuid none ntfs rw,auto,nobrowse >> /etc/fstab
 	fi
 fi
 
@@ -106,6 +115,3 @@ echo
 echo 'Device will not show up in Finder.'
 echo 'If you need to open it again: Go->Go to Folder and then write /Volumes/devicelabel'
 exit 0
-
-
-
