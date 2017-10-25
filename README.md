@@ -17,7 +17,7 @@ Connect the disk and then from Terminal:
 
 `sudo ./ntfsmount.sh labelname`
 
-**Note:** labelname is the name of the disk as you can see it from Finder. Label can have spaces in it. You can write it with quotes or without, it will automatically be recognized. 
+**Note:** labelname is the name of the disk as you can see it from Finder. Label can have spaces in it. You can write it with quotes or without, it will be automatically recognized. 
 
 ## How it works
 
@@ -27,7 +27,7 @@ Once the partition is mounted in R/W mode you can't see it from Finder. If you n
 
 ## How to install
 
-If you want you can install the script so you can call it using Terminal without have to Change Directory first. 
+If you want you can install the script so you can call it using Terminal without having to Change Directory first. 
 
 cd to Script Directory, then: 
 
@@ -41,6 +41,7 @@ Then usage is:
 ## Changelog
 2017-10-25
 * Added --install option
+* Tested on MacOS High Sierra 10.13
 
 2017-09-09
 * Initial Release
