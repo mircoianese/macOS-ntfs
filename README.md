@@ -31,10 +31,7 @@ If you want you can install the script so you can call it using Terminal without
 
 cd to Script Directory, then: 
 
-`sudo cp ntfsmount.sh ntfsfix /usr/bin`
-
-`sudo cp libntfs.9.dylib /usr/local/lib/libntfs.9.dylib`
-
+`sudo ./ntfsmount.sh --install`
 
 Then usage is:
 
