@@ -39,6 +39,8 @@ Then usage is:
 
 
 ## Changelog
+2017-10-25
+* Added --install option
 
 2017-09-09
 * Initial Release
