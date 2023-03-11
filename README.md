@@ -1,3 +1,8 @@
+**THIS DOES NOT WORK FOR MAC OS v10.13+**
+
+*Just format your drive in exFat.*
+
+
 # MacOS NTFS Mounter
 Simple script to enable R/W mount for an NTFS device in MacOS using FSTAB, only when it's needed. 
 This Script also perform a chkdsk in case the NTFS partition is "damaged", when diskutil fails to mount it as R/W because the device was previously removed from a Windows PC without safe-remove.
